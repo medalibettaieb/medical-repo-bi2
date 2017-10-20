@@ -4,20 +4,24 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  * Entity implementation class for Entity: Room
  *
  */
 @Entity
-
+@Table(name="T_ROOM")
 public class Room implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private int capacity;
 	private int number;
@@ -34,6 +38,12 @@ public class Room implements Serializable {
 
 	public Room() {
 		super();
+	}
+
+	public Room(int capacity, int number) {
+		super();
+		this.capacity = capacity;
+		this.number = number;
 	}
 
 	public int getId() {

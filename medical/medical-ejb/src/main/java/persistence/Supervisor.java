@@ -1,9 +1,8 @@
 package persistence;
 
 import java.io.Serializable;
-import java.lang.String;
-import javax.persistence.*;
-import persistence.User;
+
+import javax.persistence.Entity;
 
 /**
  * Entity implementation class for Entity: Supervisor
@@ -13,13 +12,18 @@ import persistence.User;
 
 public class Supervisor extends User implements Serializable {
 
-	
 	private String level;
 	private static final long serialVersionUID = 1L;
 
 	public Supervisor() {
 		super();
-	}   
+	}
+
+	public Supervisor(String name, String level) {
+		super(name);
+		this.level = level;
+	}
+
 	public String getLevel() {
 		return this.level;
 	}
@@ -27,5 +31,5 @@ public class Supervisor extends User implements Serializable {
 	public void setLevel(String level) {
 		this.level = level;
 	}
-   
+
 }

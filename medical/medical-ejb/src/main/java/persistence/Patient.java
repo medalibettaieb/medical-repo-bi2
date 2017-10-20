@@ -19,6 +19,11 @@ public class Patient extends User implements Serializable {
 		super();
 	}
 
+	public Patient(String name, Gender gender) {
+		super(name);
+		this.gender = gender;
+	}
+
 	public Gender getGender() {
 		return gender;
 	}

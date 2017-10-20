@@ -3,7 +3,11 @@ package services;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
+import persistence.Room;
 import persistence.User;
 
 /**
@@ -11,42 +15,63 @@ import persistence.User;
  */
 @Stateless
 public class BasicOps implements BasicOpsRemote, BasicOpsLocal {
+	@PersistenceContext
+	private EntityManager entityManager;
 
-    /**
-     * Default constructor. 
-     */
-    public BasicOps() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public BasicOps() {
+	}
 
 	@Override
 	public void addUser(User user) {
-		// TODO Auto-generated method stub
-		
+		entityManager.persist(user);
 	}
 
 	@Override
 	public void updateUser(User user) {
-		// TODO Auto-generated method stub
-		
+		entityManager.merge(user);
 	}
 
 	@Override
 	public void deleteUser(User user) {
-		// TODO Auto-generated method stub
-		
+		entityManager.remove(user);
 	}
 
 	@Override
-	public void deleteUserBiId(int id) {
-		// TODO Auto-generated method stub
-		
+	public void deleteUserById(int id) {
+		entityManager.remove(findUserById(id));
 	}
 
 	@Override
 	public List<User> findAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		String jpql = "SELECT u FROM User u";
+		Query query = entityManager.createQuery(jpql);
+		return query.getResultList();
+	}
+
+	@Override
+	public User findUserById(int id) {
+		return entityManager.find(User.class, id);
+	}
+
+	@Override
+	public void addRoom(Room room) {
+		entityManager.persist(room);
+
+	}
+
+	@Override
+	public Room findRoomById(int id) {
+		return entityManager.find(Room.class, id);
+	}
+
+	@Override
+	public List<Room> findAllRooms() {
+		String jpql = "SELECT u FROM Room u";
+		Query query = entityManager.createQuery(jpql);
+		return query.getResultList();
 	}
 
 }
