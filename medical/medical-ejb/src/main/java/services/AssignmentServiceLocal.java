@@ -1,5 +1,7 @@
 package services;
 
+import java.util.List;
+
 import javax.ejb.Local;
 
 import persistence.Room;
@@ -11,5 +13,5 @@ public interface AssignmentServiceLocal {
 
 	void assignSupervisorToRoom(User user, Room room);
 
-	void assignDoctorToRoom(User user, Room room);
+	void assignRoomsToSupervisor(List<Room> rooms, User superviser);
 }

@@ -23,5 +23,9 @@ public interface BasicOpsRemote {
 	
 	void addRoom(Room room);
 	
+	void updateRoom(Room room);
+
+	void deleteRoom(Room room);
+	
 	Room findRoomById(int id);
 }

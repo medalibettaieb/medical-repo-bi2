@@ -3,7 +3,9 @@ package persistence;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +30,7 @@ public class User implements Serializable {
 	@OneToOne
 	private Room patientsRoom;
 
-	@OneToMany(mappedBy = "superviser")
+	@OneToMany(mappedBy = "superviser", fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	private List<Room> supervisedRooms;
 
 	@ManyToMany
@@ -83,5 +85,11 @@ public class User implements Serializable {
 	public void setVisitedRooms(List<Room> visitedRooms) {
 		this.visitedRooms = visitedRooms;
 	}
-
+   
+	public void linkRoomsToThisUser(List<Room> rooms) {
+		this.supervisedRooms = rooms;
+		for (Room r : rooms) {
+			r.setSuperviser(this);
+		}
+	}
 }

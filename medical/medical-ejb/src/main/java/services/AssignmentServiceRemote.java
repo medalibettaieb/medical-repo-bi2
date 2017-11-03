@@ -1,5 +1,7 @@
 package services;
 
+import java.util.List;
+
 import javax.ejb.Remote;
 
 import persistence.Room;
@@ -12,4 +14,7 @@ public interface AssignmentServiceRemote {
 	void assignSupervisorToRoom(User user, Room room);
 
 	void assignDoctorToRoom(User user, Room room);
+
+	void assignRoomsToSupervisor(List<Room> rooms, User superviser);
+
 }

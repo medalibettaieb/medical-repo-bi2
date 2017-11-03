@@ -1,5 +1,7 @@
 package services;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -18,6 +20,8 @@ public class AssignmentService implements AssignmentServiceRemote, AssignmentSer
 
 	@EJB
 	private BasicOpsLocal basicOpsLocal;
+	@EJB
+	private ReportingServiceLocal reportingServiceLocal;
 
 	/**
 	 * Default constructor.
@@ -35,14 +39,25 @@ public class AssignmentService implements AssignmentServiceRemote, AssignmentSer
 
 	@Override
 	public void assignSupervisorToRoom(User user, Room room) {
-		// TODO Auto-generated method stub
+		room.setSuperviser(user);
 
+		basicOpsLocal.updateRoom(room);
 	}
 
 	@Override
 	public void assignDoctorToRoom(User user, Room room) {
-		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public void assignRoomsToSupervisor(List<Room> rooms, User superviser) {
+		List<Room> oldRooms=reportingServiceLocal.findRoomsBySupervisor(superviser.getId());
+	for (Room r : rooms) {
+			oldRooms.add(r);
+		}
+		//superviser.linkRoomsToThisUser(oldRooms);
+
+		basicOpsLocal.updateUser(superviser);
 	}
 
 }

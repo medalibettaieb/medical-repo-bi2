@@ -74,4 +74,15 @@ public class BasicOps implements BasicOpsRemote, BasicOpsLocal {
 		return query.getResultList();
 	}
 
+	@Override
+	public void updateRoom(Room room) {
+		entityManager.merge(room);
+	}
+
+	@Override
+	public void deleteRoom(Room room) {
+		entityManager.remove(room);
+		
+	}
+
 }

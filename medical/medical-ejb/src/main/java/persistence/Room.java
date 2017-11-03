@@ -3,6 +3,7 @@ package persistence;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,11 +30,11 @@ public class Room implements Serializable {
 	@OneToOne(mappedBy = "patientsRoom")
 	private User patient;
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.MERGE)
 	private User superviser;
 
 	@ManyToMany(mappedBy = "visitedRooms")
-	private List<User> visitedDoctors;
+	private List	<User> visitedDoctors;
 	private static final long serialVersionUID = 1L;
 
 	public Room() {

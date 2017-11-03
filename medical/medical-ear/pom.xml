@@ -32,7 +32,9 @@
 				<configuration>
 					<version>7</version>
 					<fileNameMapping>no-version</fileNameMapping>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
 				</configuration>
+				
 			</plugin>
 			<plugin>
 				<groupId>org.wildfly.plugins</groupId>
