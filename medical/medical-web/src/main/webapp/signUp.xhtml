@@ -9,20 +9,24 @@
 	<ui:define name="title">a</ui:define>
 	<ui:define name="content">sign up 
 	<h:form>
+	  <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+ 
+ 
 			<h:panelGrid columns="2">
+			
 				<p:outputLabel value="name" />
-				<p:inputText id="i1" value="#{userManagementBean.student.name}"
-					required="true" requiredMessage="emmm ti yezzi">
+				<p:inputText id="i1" value="#{userManagementBean.user.name}"
+					required="true" requiredMessage="nom ">
 
 				</p:inputText>
 				<p:outputLabel value="login" />
-				<p:inputText value="#{userManagementBean.student.login}" />
+				<p:inputText value="#{userManagementBean.user.username}" />
 				<p:outputLabel value="password"/>
 				<p:password id="feedback"
-					value="#{userManagementBean.student.password}" feedback="true" />
+					value="#{userManagementBean.user.pwd}" feedback="true" />
 			</h:panelGrid>
 			<p:commandButton value="add"
-				action="#{userManagementBean.doAddStudent()}" />
+				action="#{userManagementBean.doAddUser()}" />
 
 		</h:form>
 	</ui:define>

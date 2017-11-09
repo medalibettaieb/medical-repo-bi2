@@ -33,7 +33,8 @@ public class MedTools {
 		Patient patient= new Patient("salah",Gender.MALE );
 		Patient patient2 = new Patient("mohamed", Gender.MALE);
 		Patient patient3 = new Patient("rihab",Gender.FEMALE);
-		
+		patient.setPwd("s");
+		patient.setUsername("s");
 
 	
 		Supervisor supervisor = new Supervisor("ali", "1");

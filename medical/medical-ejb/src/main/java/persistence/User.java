@@ -26,11 +26,29 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
+	private String username;
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPwd() {
+		return pwd;
+	}
+
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+
+	private String pwd;
 
 	@OneToOne
 	private Room patientsRoom;
 
-	@OneToMany(mappedBy = "superviser", fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
+	@OneToMany(mappedBy = "superviser")//, fetch=FetchType.EAGER,cascade=CascadeType.MERGE)
 	private List<Room> supervisedRooms;
 
 	@ManyToMany

@@ -55,7 +55,7 @@ public class AssignmentService implements AssignmentServiceRemote, AssignmentSer
 	for (Room r : rooms) {
 			oldRooms.add(r);
 		}
-		//superviser.linkRoomsToThisUser(oldRooms);
+		superviser.linkRoomsToThisUser(oldRooms);
 
 		basicOpsLocal.updateUser(superviser);
 	}

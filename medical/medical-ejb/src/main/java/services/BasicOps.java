@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import persistence.Room;
+import persistence.Supervisor;
 import persistence.User;
 
 /**
@@ -85,4 +86,39 @@ public class BasicOps implements BasicOpsRemote, BasicOpsLocal {
 		
 	}
 
+	@Override
+	public User authentification(String username, String pwd) {
+		
+		String jpql = "SELECT z FROM User z WHERE z.username=:username and z.pwd=:pwd";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("username", username);
+		query.setParameter("pwd", pwd);
+		User user= null;
+		try {
+		  user=(User)query.getSingleResult();
+
+	
+} catch (Exception e) {
+	// TODO: handle exception
+}
+
+		return user;
+	
+		
+	}
+
+	@Override
+	public List<Supervisor> findAllSupervisors() {
+		String jpql = "SELECT u FROM Supervisor u";
+		Query query = entityManager.createQuery(jpql);
+		return query.getResultList();
+	}
+
+	@Override
+	public Supervisor findSupervisorByName(String name) {
+		return entityManager.createQuery("SELECT c FROM Supervisor c WHERE c.name=:p", Supervisor.class)
+				.setParameter("p", name).getSingleResult();
+		
+	}
+	
 }
